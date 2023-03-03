@@ -12,7 +12,7 @@ async function getBreweries(searchTerm, filterType) {
   if (filterType !== "false") {
     url += `&type=${filterType}`;
   }
-console.log (url)
+
   const response = await fetch(url);
   const breweries = await response.json();
   return breweries;
@@ -22,8 +22,6 @@ console.log (url)
 function renderBreweries(breweries) {
   // Clear previous results
   breweryList.innerHTML = '';
-
-  console.log (breweries)
 
   // Render each brewery as a list item
   breweries.forEach((brewery) => {
