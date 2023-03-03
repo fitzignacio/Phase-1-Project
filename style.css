@@ -1,3 +1,4 @@
+/* Set font, text and background color for page*/
 body {
     font-family: Calibri, sans-serif;
     color: #000;
@@ -5,15 +6,18 @@ body {
     transition: background-color 0.5s ease;
   }
   
+  /*Style for page heading */
   h1 {
     font-size: 2em;
     margin: 1em;
   }
   
+  /* Style for page header */
   header {
     margin: 0 1em 1em;
   }
   
+  /* Style for forms */
   form {
     display: flex;
     flex-direction: column;
@@ -21,11 +25,13 @@ body {
     margin: 1em;
   }
   
+  /* Style for form labels */
   label {
     font-size: 1.2em;
     margin-bottom: 0.5em;
   }
   
+  /* Style for text input */
   input[type="text"] {
     padding: 0.5em;
     font-size: 1em;
@@ -34,6 +40,7 @@ body {
     margin-bottom: 0.5em;
   }
   
+  /* Style for buttons */
   button {
     padding: 0.5em 1em;
     font-size: 1em;
@@ -45,6 +52,7 @@ body {
     transition: background-color 0.5s ease;
   }
   
+  /* Style for buttons hover state */
   button:hover {
     background-color: #fff;
     color: #000;

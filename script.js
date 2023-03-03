@@ -9,10 +9,10 @@ const braveBeerDawgButton = document.getElementById('brave-mode-toggle');
 // Function to fetch breweries from API
 async function getBreweries(searchTerm, filterType) {
   let url = `https://api.openbrewerydb.org/breweries/search?query=${searchTerm}`;
-  if (filterType) {
+  if (filterType !== "false") {
     url += `&type=${filterType}`;
   }
-
+console.log (url)
   const response = await fetch(url);
   const breweries = await response.json();
   return breweries;
@@ -22,6 +22,8 @@ async function getBreweries(searchTerm, filterType) {
 function renderBreweries(breweries) {
   // Clear previous results
   breweryList.innerHTML = '';
+
+  console.log (breweries)
 
   // Render each brewery as a list item
   breweries.forEach((brewery) => {
@@ -49,15 +51,8 @@ searchForm.addEventListener('submit', async (event) => {
   // Fetch breweries from API
   const breweries = await getBreweries(cityToAvoid, breweryTypeFilter);
 
-  // Filter breweries by city and brewery type
-  const filteredBreweries = breweries.filter((brewery) => {
-    const breweryCity = brewery.city.toLowerCase();
-    const cityToAvoidLower = cityToAvoid.toLowerCase();
-    return breweryCity.includes(cityToAvoidLower) && (breweryTypeFilter === '' || brewery.brewery_type === breweryTypeFilter);
-  });
-
   // Render filtered breweries to HTML
-  renderBreweries(filteredBreweries);
+  renderBreweries(breweries);
 });
 
 // Event listener for scaredy-cat mode toggle button
