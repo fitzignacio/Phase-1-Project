@@ -1,2 +1,48 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fear the Beer: The map that lets you roam, without the foam</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div id="mode-buttons">
+      <button type="button" id="scaredy-mode-toggle">Scaredy Cat</button>
+      <button type="button" id="brave-mode-toggle">Brave Beer Dawg</button>
+    </div>
+    <h1>Fear the Beer: The site that lets you roam, without the foam</h1>
+  </header>
+  <div id="search-bar">
+    </div>
+    <form>
+      <label for="city">Avoid brew-phobia triggering spots in this city:</label>
+      <input type="text" id="city" name="city">
+      <label for="filter-type">Type of brewery:</label>
+      <select id="filter-type">
+        <option value="">Suds Everywhere</option>
+        <option value="micro">Minis</option>
+        <option value="regional">Locals Only</option>
+        <option value="brewpub">Not(not) Bars</option>
+        <option value="contract">Strings Attached</option>
+        <option value="planning">Plan Ahead</option>
+        <option value="large">Giant Gulps</option>
+      </select>
+      <button type="submit">Search *Eyes Closed*</button>
+    </form>
+    <div class="mouth"></div>
+  </div>
+
+  <ul id="breweries"></ul>
+
+  <footer>
+    <div class="about-section">
+      <h2>About Fear the Beer</h2>
+      <p>Fear the Beer is designed to guide people with an irrational fear of beer AWAY from breweries.</p>
+    </div>
+    <p>Created by Fitz(only fears birds).</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
 </html>
