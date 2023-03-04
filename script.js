@@ -1,65 +1,97 @@
-// Define variables for HTML elements
-const [breweryList, searchForm, cityInput, filterType, ...themeToggleButtons] = document.querySelectorAll('#breweries, form, #city, #filter-type, .theme-toggle');
+document.addEventListener('DOMContentLoaded', () => {
 
-// Function to fetch breweries from API
-function getBreweries(searchTerm, filterType) {
-  let url = `https://api.openbrewerydb.org/breweries/search?query=${searchTerm}`;
-  if (filterType !== "false") {
-    url += `&type=${filterType}`;
+const breweryList = document.querySelector('#breweries');
+const searchForm = document.querySelector('form');
+const cityInput = document.querySelector('#city');
+const filterType = document.querySelector('#filter-type');
+const themeToggleButtons = Array.from(document.querySelectorAll('.theme-toggle'));
+
+console.log(breweryList, searchForm, cityInput, filterType, themeToggleButtons);
+
+// Get breweries from API
+async function getBreweries(cityToAvoid, breweryTypeFilter) {
+  let url = `https://api.openbrewerydb.org/breweries?by_city=${cityToAvoid}`;
+  if (breweryTypeFilter !== "false") {
+    url += `&by_type=${breweryTypeFilter}`;
   }
 
-  return fetch(url)
-  .then(response => response.json())
-  .then(data => data)
-  .catch(error => console.log(error));
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
 }
 
- // Function to render each brewery as a list item
- function renderBrewery(brewery) {
+// Escape HTML characters function
+function escapeHtml(text) {
+  if (text == null) {
+    return "";
+  }
+  return text.replace(/&/g, '&amp;')
+             .replace(/</g, '&lt;')
+             .replace(/>/g, '&gt;')
+             .replace(/"/g, '&quot;')
+             .replace(/'/g, '&#039;');
+}
+
+// Render a single brewery item
+function renderBrewery(brewery) {
   const breweryItem = document.createElement('li');
   breweryItem.innerHTML = `
-    <h2>${brewery.name}</h2>
-    <p><strong>Brewery Type:</strong> ${brewery.brewery_type}</p>
-    <p><strong>Address:</strong> ${brewery.street}, ${brewery.city}, ${brewery.state} ${brewery.postal_code}</p>
-    <p><strong>Phone:</strong> ${brewery.phone}</p>
-    <p><strong>Website:</strong> <a href="${brewery.website_url}">${brewery.website_url}</a></p>
-`;
-return breweryItem;
+    <h2>${escapeHtml(brewery.name)}</h2>
+    <p><strong>Brewery Type:</strong> ${escapeHtml(brewery.brewery_type)}</p>
+    <p><strong>Address:</strong> ${escapeHtml(`${brewery.street}, ${brewery.city}, ${brewery.state} ${brewery.postal_code}`)}</p>
+    <p><strong>Phone:</strong> ${escapeHtml(brewery.phone)}</p>
+    <p><strong>Website:</strong> <a href="${escapeHtml(brewery.website_url)}">${escapeHtml(brewery.website_url)}</a></p>
+  `;
+  return breweryItem;
 }
 
-// Function to render breweries to HTML
+// Render a list of breweries
 function renderBreweries(breweries) {
-  // Clear previous results
   breweryList.innerHTML = '';
 
-  // Render each brewery as a list item
-  breweries.forEach((brewery) => {
-    const breweryItem = renderBrewery(brewery);
-    breweryList.appendChild(breweryItem);
-  });
+  if (!Array.isArray(breweries)) {
+    const noBreweriesItem = document.createElement('li');
+    noBreweriesItem.textContent = 'No breweries found. Try a different city or brewery type.';
+    breweryList.appendChild(noBreweriesItem);
+  } else {
+    breweries.forEach((brewery) => {
+      const breweryItem = renderBrewery(brewery);
+      breweryList.appendChild(breweryItem);
+    });
+  }
 }
 
-// Event listener for search form submission
-searchForm.addEventListener('submit', (event) => {
-  // Prevent default form submission behavior
+// Handle form submit event
+searchForm.addEventListener('submit', async (event) => {
   event.preventDefault();
 
-  // Get city input and brewery type filter from form
-  const cityToAvoid = cityInput.value,
-        breweryTypeFilter = filterType.value;
+  const cityToAvoid = cityInput.value;
+  const breweryTypeFilter = filterType.value;
 
-  getBreweries(cityToAvoid, breweryTypeFilter)
-  .then(data => renderBreweries(data))
-  .catch(error => console.log(error));
+  try {
+    const data = await getBreweries(cityToAvoid, breweryTypeFilter);
+    renderBreweries(data);
+  } catch (error) {
+    console.log(error);
+    alert('Oops! Something went wrong. Please try again later.');
+  }
 });
 
-// Event listener for theme toggle buttons
+// Handle theme toggle button click
 themeToggleButtons.forEach((button) => {
   button.addEventListener('click', () => {
-    const isBrave = button.dataset.theme === 'brave';
-    document.body.classList.toggle('dark-mode', isBrave);
-    themeToggleButtons.forEach((button) => {
-      button.textContent = isBrave ? 'Scaredy Cat' : 'Brave Beer Dawg';
+    const isScaredyCat = button.dataset.theme === 'scaredy';
+    document.body.classList.toggle('dark-mode', isScaredyCat);
+    themeToggleButtons.forEach((otherButton) => {
+      if (otherButton !== button) {
+        otherButton.textContent = isScaredyCat ? 'Brave Beer Dawg' : 'Scaredy Cat';
+      }
     });
   });
+});
 });

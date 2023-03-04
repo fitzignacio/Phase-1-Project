@@ -5,28 +5,31 @@
   <title>Fear the Beer: The map that lets you roam, without the foam</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class ="dark-mode">
   <header>
     <div id="mode-buttons">
-      <button type="button" id="scaredy-mode-toggle">Scaredy Cat</button>
-      <button type="button" id="brave-mode-toggle">Brave Beer Dawg</button>
+      <button type="button" class="theme-toggle" data-theme="scaredy">Scaredy Cat</button>
+      <button type="button" class="theme-toggle" data-theme="brave">Brave Beer Dawg</button>
     </div>
     <h1>Fear the Beer: The site that lets you roam, without the foam</h1>
   </header>
   <div id="search-bar">
-    </div>
     <form>
       <label for="city">Avoid brew-phobia triggering spots in this city:</label>
       <input type="text" id="city" name="city">
       <label for="filter-type">Type of brewery:</label>
       <select id="filter-type">
-        <option value="false">Suds Everywhere</option>
-        <option value="micro">Minis</option>
-        <option value="regional">Locals Only</option>
-        <option value="brewpub">Not(not) Bars</option>
-        <option value="contract">Strings Attached</option>
-        <option value="planning">Plan Ahead</option>
-        <option value="large">Giant Gulps</option>
+        <option value="false">All</option>
+        <option value="micro">Micro</option>
+        <option value="nano">Nano</option>
+        <option value="regional">Regional</option>
+        <option value="brewpub">Brewpub</option>
+        <option value="large">Large</option>
+        <option value="planning">Planning</option>
+        <option value="bar">Bar</option>
+        <option value="contract">Contract</option>
+        <option value="proprietor">Proprietor</option>
+        <option value="closed">Closed</option>
       </select>
       <button type="submit">Search *Eyes Closed*</button>
     </form>
@@ -43,6 +46,6 @@
     <p>Created by Fitz "Only Fears Birds" Ignacio.</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script defer src="script.js"></script>
 </body>
 </html>
