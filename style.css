@@ -1,125 +1,45 @@
-/* Set font, text and background color for page */
+/* Default styles for light mode */
 body {
   font-family: Calibri, sans-serif;
-  color: #fff;
-  background-color: #000;
-  transition: background-color 0.5s ease;
-}
-
-/* Style for page heading */
-h1 {
-  font-size: 2em;
-  margin: 1em;
-}
-
-/* Style for page header */
-header {
-  margin: 0 1em 1em;
-}
-
-/* Style for forms */
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 1em;
-}
-
-/* Style for form labels */
-label {
-  font-size: 1.2em;
-  margin-bottom: 0.5em;
-}
-
-/* Style for text input */
-input[type="text"] {
-  padding: 0.5em;
-  font-size: 1em;
-  border: 2px solid #fff;
-  border-radius: 5px;
-  margin-bottom: 0.5em;
   color: #000;
   background-color: #fff;
-}
-
-/* Style for buttons */
-button {
-  padding: 0.5em 1em;
-  font-size: 1em;
-  background-color: #fff;
-  color: #000;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
   transition: background-color 0.5s ease;
-}
-
-/* Style for buttons hover state */
-button:hover {
-  background-color: #000;
-  color: #fff;
-}
-
-ul {
-  list-style-type: none;
-  margin: 1em;
-  padding: 0;
-}
-
-li {
-  margin-bottom: 2em;
-}
-
-li h2 {
-  font-size: 1.5em;
-  margin-bottom: 0.5em;
-}
-
-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 1em;
-}
-
-.about-section {
-  margin-right: 1em;
 }
 
 /* Dark mode styles */
 .dark-mode {
-  color: #000;
-  background-color: #fff;
+  color: #fff; /* Text color in dark mode */
+  background-color: #000; /* Background color in dark mode */
 }
 
 .dark-mode h1 {
-  color: #000;
+  color: #fff; /* Color of h1 tags in dark mode */
 }
 
 .dark-mode label {
-  color: #000;
+  color: #fff; /* Text color of labels in dark mode */
 }
 
 .dark-mode input[type="text"] {
-  color: #000;
-  background-color: #444;
+  color: #fff; /* Text color of input fields in dark mode */
+  background-color: #000; /* Background color of input fields in dark mode */
 }
 
 .dark-mode button {
-  background-color: #000;
-  color: #fff;
+  background-color: #fff; /* Background color of buttons in dark mode */
+  color: #000; /* Text color of buttons in dark mode */
 }
 
 .dark-mode button:hover {
-  background-color: #fff;
-  color: #000;
+  background-color: #000; /* Background color of buttons in dark mode when hovered */
+  color: #fff; /* Text color of buttons in dark mode when hovered */
 }
 
 .dark-mode ul {
-  color: #000;
-  background-color: #444;
+  color: #fff; /* Text color of unordered lists in dark mode */
+  background-color: #000; /* Background color of unordered lists in dark mode */
 }
 
 .dark-mode li h2 {
-  color: #000;
+  color: #fff; /* Color of h2 tags in dark mode */
 }

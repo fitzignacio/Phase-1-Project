@@ -1,51 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Fear the Beer: The map that lets you roam, without the foam</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body class ="dark-mode">
-  <header>
-    <div id="mode-buttons">
-      <button type="button" class="theme-toggle" data-theme="scaredy">Scaredy Cat</button>
-      <button type="button" class="theme-toggle" data-theme="brave">Brave Beer Dawg</button>
+  <head>
+    <!-- Set character encoding and page title -->
+    <meta charset="UTF-8">
+    <title>Fear the Beer: The map that lets you roam, without the foam</title>
+    
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body class="dark-mode">
+    <header>
+      <!-- Mode buttons for switching between light and dark mode -->
+      <div id="mode-buttons">
+        <button type="button" class="theme-toggle" data-theme="scaredy">Scaredy Cat</button>
+        <button type="button" class="theme-toggle" data-theme="brave">Brave Beer Dawg</button>
+      </div>
+      <!-- Page heading -->
+      <h1>Fear the Beer: The site that lets you roam, without the foam</h1>
+    </header>
+    
+    <!-- Search bar for finding breweries -->
+    <div id="search-bar">
+      <form>
+        <!-- Label and input for city search -->
+        <label for="city">Avoid brew-phobia triggering spots in this city:</label>
+        <input type="text" id="city" name="city">
+        
+        <!-- Label and dropdown for brewery type filter -->
+        <label for="filter-type">Type of brewery:</label>
+        <select id="filter-type">
+          <option value="false">All</option>
+          <option value="micro">Micro</option>
+          <option value="nano">Nano</option>
+          <option value="regional">Regional</option>
+          <option value="brewpub">Brewpub</option>
+          <option value="large">Large</option>
+          <option value="planning">Planning</option>
+          <option value="bar">Bar</option>
+          <option value="contract">Contract</option>
+          <option value="proprietor">Proprietor</option>
+          <option value="closed">Closed</option>
+        </select>
+        
+        <!-- Submit button for search form -->
+        <button type="submit">Search *Eyes Closed*</button>
+      </form>
+      
+      <!-- Animated mouth for search bar -->
+      <div class="mouth"></div>
     </div>
-    <h1>Fear the Beer: The site that lets you roam, without the foam</h1>
-  </header>
-  <div id="search-bar">
-    <form>
-      <label for="city">Avoid brew-phobia triggering spots in this city:</label>
-      <input type="text" id="city" name="city">
-      <label for="filter-type">Type of brewery:</label>
-      <select id="filter-type">
-        <option value="false">All</option>
-        <option value="micro">Micro</option>
-        <option value="nano">Nano</option>
-        <option value="regional">Regional</option>
-        <option value="brewpub">Brewpub</option>
-        <option value="large">Large</option>
-        <option value="planning">Planning</option>
-        <option value="bar">Bar</option>
-        <option value="contract">Contract</option>
-        <option value="proprietor">Proprietor</option>
-        <option value="closed">Closed</option>
-      </select>
-      <button type="submit">Search *Eyes Closed*</button>
-    </form>
-    <div class="mouth"></div>
-  </div>
 
-  <ul id="breweries"></ul>
+    <!-- List of breweries to be displayed -->
+    <ul id="breweries"></ul>
 
-  <footer>
-    <div class="about-section">
-      <h2>About Fear the Beer</h2>
-      <p>Fear the Beer is designed to guide people with a<s>n irrational</s> fear of beer AWAY from breweries.</p>
-    </div>
-    <p>Created by Fitz "Only Fears Birds" Ignacio.</p>
-  </footer>
+    <!-- Page footer with about section and creator credit -->
+    <footer>
+      <div class="about-section">
+        <h2>About Fear the Beer</h2>
+        <p>Fear the Beer is designed to guide people with an <s>irrational</s> fear of beer AWAY from breweries.</p>
+      </div>
+      <p>Created by Fitz "Only Fears Birds" Ignacio.</p>
+    </footer>
 
-  <script defer src="script.js"></script>
-</body>
+    <!-- Link to external JavaScript file -->
+    <script defer src="script.js"></script>
+  </body>
 </html>
