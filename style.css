@@ -94,6 +94,15 @@ body {
     color: #fff;
   }
   
+  .dark-mode label {
+    color: #fff;
+  }
+  
+  .dark-mode input[type="text"] {
+    color: #fff;
+    background-color: #444;
+  }
+  
   .dark-mode button {
     background-color: #fff;
     color: #000;
@@ -104,3 +113,11 @@ body {
     color: #fff;
   }
   
+  .dark-mode ul {
+    color: #fff;
+    background-color: #444;
+  }
+  
+  .dark-mode li h2 {
+    color: #fff;
+  }
