@@ -3,8 +3,7 @@ const breweryList = document.getElementById('breweries');
 const searchForm = document.querySelector('form');
 const cityInput = document.getElementById('city');
 const filterType = document.getElementById('filter-type');
-const scaredyCatButton = document.getElementById('scaredy-mode-toggle');
-const braveBeerDawgButton = document.getElementById('brave-mode-toggle');
+const themeButtons = document.querySelectorAll('.theme-toggle');
 
 // Function to fetch breweries from API
 async function getBreweries(searchTerm, filterType) {
@@ -12,11 +11,11 @@ async function getBreweries(searchTerm, filterType) {
   if (filterType !== "false") {
     url += `&type=${filterType}`;
   }
-
   const response = await fetch(url);
   const breweries = await response.json();
   return breweries;
 }
+
 
 // Function to render breweries to HTML
 function renderBreweries(breweries) {
@@ -53,24 +52,14 @@ searchForm.addEventListener('submit', async (event) => {
   renderBreweries(breweries);
 });
 
-// Event listener for scaredy-cat mode toggle button
-scaredyCatButton.addEventListener('click', () => {
-  // Toggle the button text and body class
-  if (scaredyCatButton.textContent === 'Scaredy Cat') {
-    document.body.classList.remove('dark-mode');
-  } else {
-    braveBeerDawgButton.textContent = 'Brave Beer Dawg';
-    document.body.classList.remove('dark-mode');
-  }
-});
-
-// Event listener for brave beer dawg mode toggle button
-braveBeerDawgButton.addEventListener('click', () => {
-  // Toggle the button text and body class
-  if (braveBeerDawgButton.textContent === 'Brave Beer Dawg') {
-    scaredyCatButton.textContent = 'Scaredy Cat';
-    document.body.classList.add('dark-mode');
-  } else {
-    document.body.classList.remove('dark-mode');
+// Event listener for theme toggle buttons
+document.addEventListener('click', (event) => {
+  if (event.target.matches('.theme-toggle')) {
+    // Toggle the button text and body class
+    const isBrave = event.target.dataset.theme === 'brave';
+    document.body.classList.toggle('dark-mode', isBrave);
+    themeButtons.forEach(button => {
+      button.textContent = isBrave ? 'Brave Beer Dawg' : 'Scaredy Cat';
+    });
   }
 });
