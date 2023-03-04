@@ -1,9 +1,5 @@
 // Define variables for HTML elements
-const breweryList = document.getElementById('breweries'),
-      searchForm = document.querySelector('form'),
-      cityInput = document.getElementById('city'),
-      filterType = document.getElementById('filter-type'),
-      themeToggleButtons = document.querySelectorAll('.theme-toggle');
+const [breweryList, searchForm, cityInput, filterType, ...themeToggleButtons] = document.querySelectorAll('#breweries, form, #city, #filter-type, .theme-toggle');
 
 // Function to fetch breweries from API
 function getBreweries(searchTerm, filterType) {
