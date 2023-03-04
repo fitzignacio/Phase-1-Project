@@ -3,7 +3,7 @@ const breweryList = document.getElementById('breweries');
 const searchForm = document.querySelector('form');
 const cityInput = document.getElementById('city');
 const filterType = document.getElementById('filter-type');
-const themeButtons = document.querySelectorAll('.theme-toggle');
+const themeToggles = document.querySelectorAll('.theme-toggle');
 
 // Function to fetch breweries from API
 async function getBreweries(searchTerm, filterType) {
@@ -16,6 +16,18 @@ async function getBreweries(searchTerm, filterType) {
   return breweries;
 }
 
+ // Function to render each brewery as a list item
+ function renderBrewery(brewery) {
+  const breweryItem = document.createElement('li');
+  breweryItem.innerHTML = `
+  <h2>${brewery.name}</h2>
+  <p><strong>Brewery Type:</strong> ${brewery.brewery_type}</p>
+  <p><strong>Address:</strong> ${brewery.street}, ${brewery.city}, ${brewery.state} ${brewery.postal_code}</p>
+  <p><strong>Phone:</strong> ${brewery.phone}</p>
+  <p><strong>Website:</strong> <a href="${brewery.website_url}">${brewery.website_url}</a></p>
+`;
+return breweryItem;
+}
 
 // Function to render breweries to HTML
 function renderBreweries(breweries) {
@@ -24,14 +36,7 @@ function renderBreweries(breweries) {
 
   // Render each brewery as a list item
   breweries.forEach((brewery) => {
-    const breweryItem = document.createElement('li');
-    breweryItem.innerHTML = `
-      <h2>${brewery.name}</h2>
-      <p><strong>Brewery Type:</strong> ${brewery.brewery_type}</p>
-      <p><strong>Address:</strong> ${brewery.street}, ${brewery.city}, ${brewery.state} ${brewery.postal_code}</p>
-      <p><strong>Phone:</strong> ${brewery.phone}</p>
-      <p><strong>Website:</strong> <a href="${brewery.website_url}">${brewery.website_url}</a></p>
-    `;
+    const breweryItem = renderBrewery(brewery);
     breweryList.appendChild(breweryItem);
   });
 }
@@ -53,13 +58,13 @@ searchForm.addEventListener('submit', async (event) => {
 });
 
 // Event listener for theme toggle buttons
-document.addEventListener('click', (event) => {
-  if (event.target.matches('.theme-toggle')) {
+themeToggles.forEach((toggle) => {
+  toggle.addEventListener('click', () => {
     // Toggle the button text and body class
-    const isBrave = event.target.dataset.theme === 'brave';
+    const isBrave = toggle.dataset.theme === 'brave';
     document.body.classList.toggle('dark-mode', isBrave);
-    themeButtons.forEach(button => {
-      button.textContent = isBrave ? 'Brave Beer Dawg' : 'Scaredy Cat';
+    themeToggles.forEach((button) => {
+      button.textContent = isBrave ? 'Scaredy Cat' : 'Brave Beer Dawg';
     });
-  }
+  });
 });
