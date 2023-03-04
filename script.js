@@ -6,14 +6,16 @@ const filterType = document.getElementById('filter-type');
 const themeToggles = document.querySelectorAll('.theme-toggle');
 
 // Function to fetch breweries from API
-async function getBreweries(searchTerm, filterType) {
+function getBreweries(searchTerm, filterType) {
   let url = `https://api.openbrewerydb.org/breweries/search?query=${searchTerm}`;
   if (filterType !== "false") {
     url += `&type=${filterType}`;
   }
-  const response = await fetch(url);
-  const breweries = await response.json();
-  return breweries;
+
+  return fetch(url)
+  .then(response => response.json())
+  .then(data => data)
+  .catch(error => console.log(error));
 }
 
  // Function to render each brewery as a list item
@@ -42,7 +44,7 @@ function renderBreweries(breweries) {
 }
 
 // Event listener for search form submission
-searchForm.addEventListener('submit', async (event) => {
+searchForm.addEventListener('submit', (event) => {
   // Prevent default form submission behavior
   event.preventDefault();
 
@@ -50,11 +52,9 @@ searchForm.addEventListener('submit', async (event) => {
   const cityToAvoid = cityInput.value;
   const breweryTypeFilter = filterType.value;
 
-  // Fetch breweries from API
-  const breweries = await getBreweries(cityToAvoid, breweryTypeFilter);
-
-  // Render filtered breweries to HTML
-  renderBreweries(breweries);
+  getBreweries(cityToAvoid, breweryTypeFilter)
+  .then(data => renderBreweries(data))
+  .catch(error => console.log(error));
 });
 
 // Event listener for theme toggle buttons
