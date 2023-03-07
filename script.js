@@ -1,13 +1,12 @@
+// Add an event listener for the "DOMContentLoaded" event
 document.addEventListener('DOMContentLoaded', () => {
+  
   // Selecting DOM elements
   const breweryList = document.querySelector('#breweries');
   const searchForm = document.querySelector('form');
   const cityInput = document.querySelector('#city');
   const filterType = document.querySelector('#filter-type');
   const themeToggleButtons = Array.from(document.querySelectorAll('.theme-toggle'));
-
-  // Logging DOM elements
-  console.log(breweryList, searchForm, cityInput, filterType, themeToggleButtons);
 
   // Get breweries from API
   async function getBreweries(cityToAvoid, breweryTypeFilter) {

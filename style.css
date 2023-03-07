@@ -6,6 +6,8 @@ body {
   transition: background-color 0.5s ease;
 }
 
+
+
 /* Dark mode styles */
 .dark-mode {
   color: #fff; /* Text color in dark mode */
@@ -43,3 +45,4 @@ body {
 .dark-mode li h2 {
   color: #fff; /* Color of h2 tags in dark mode */
 }
+
