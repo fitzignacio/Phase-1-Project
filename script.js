@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const cityInput = document.querySelector('#city');
   const filterType = document.querySelector('#filter-type');
   const themeToggleButtons = Array.from(document.querySelectorAll('.theme-toggle'));
+  const searchButton = document.querySelector('button[type="submit"]');
 
   // Get breweries from API
   async function getBreweries(cityToAvoid, breweryTypeFilter) {
@@ -31,10 +32,10 @@ document.addEventListener('DOMContentLoaded', () => {
       return "";
     }
     return text.replace(/&/g, '&amp;')
-               .replace(/</g, '&lt;')
-               .replace(/>/g, '&gt;')
-               .replace(/"/g, '&quot;')
-               .replace(/'/g, '&#039;');
+              .replace(/</g, '&lt;')
+              .replace(/>/g, '&gt;')
+              .replace(/"/g, '&quot;')
+              .replace(/'/g, '&#039;');
   }
 
   // Render a single brewery item
@@ -82,18 +83,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
- // Handle theme toggle button click
-themeToggleButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    const isScaredyCat = button.dataset.theme === 'scaredy';
-    document.body.classList.toggle('dark-mode', !isScaredyCat);
-    themeToggleButtons.forEach((otherButton) => {
-      if (otherButton !== button) {
-        otherButton.textContent = isScaredyCat ? 'Brave Beer Dawg' : 'Scaredy Cat';
+  // Add event listeners to theme toggle buttons
+  themeToggleButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const isScaredyCat = button.dataset.theme === 'scaredy';
+      document.body.classList.toggle('dark-mode', !isScaredyCat);
+
+      // Change the text of the search button based on the current theme
+      if (isScaredyCat) {
+        searchButton.textContent = 'Search *Eyes Closed*';
       } else {
-        button.textContent = isScaredyCat ? 'Scaredy Cat' : 'Brave Beer Dawg';
+        searchButton.textContent = 'Search *Eyes Open*';
       }
-    });
+
+      // Update the text of the other theme toggle button
+      themeToggleButtons.forEach((otherButton) => {
+        if (otherButton !== button) {
+          otherButton.textContent = isScaredyCat ? 'Brave Beer Dawg' : 'Scaredy Cat';
+        } else {
+          button.textContent = isScaredyCat ? 'Scaredy Cat' : 'Brave Beer Dawg';
+        }
+      });
   });
-});
+  });
 });
