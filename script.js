@@ -25,18 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Escape HTML characters function
-  function escapeHtml(text) {
-    if (text == null) {
-      return "";
-    }
-    return text.replace(/&/g, '&amp;')
-               .replace(/</g, '&lt;')
-               .replace(/>/g, '&gt;')
-               .replace(/"/g, '&quot;')
-               .replace(/'/g, '&#039;');
-  }
-
   // Render a single brewery item
   function renderBrewery(brewery) {
     const breweryItem = document.createElement('li');
