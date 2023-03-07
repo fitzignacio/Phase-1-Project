@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Get breweries from API
   async function getBreweries(cityToAvoid, breweryTypeFilter) {
-    let url = `https://api.openbrewerydb.org/breweries?by_city=${cityToAvoid}`;
+    const url = `https://api.openbrewerydb.org/breweries?by_city=${cityToAvoid}`;
     if (breweryTypeFilter !== "false") {
       url += `&by_type=${breweryTypeFilter}`;
     }
