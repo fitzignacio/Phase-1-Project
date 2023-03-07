@@ -53,13 +53,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Render a list of breweries
   function renderBreweries(breweries) {
-    breweryList.innerHTML = '';
+    breweryList.innerHTML = ''; // Clears the brewery list
 
     if (!Array.isArray(breweries)) {
+      // If there are no breweries, render a message
       const noBreweriesItem = document.createElement('li');
       noBreweriesItem.textContent = 'No breweries found. Try a different city or brewery type.';
       breweryList.appendChild(noBreweriesItem);
     } else {
+      // If there are breweries, render each brewery as a list item
       breweries.forEach((brewery) => {
         const breweryItem = renderBrewery(brewery);
         breweryList.appendChild(breweryItem);
@@ -71,9 +73,11 @@ document.addEventListener('DOMContentLoaded', () => {
   searchForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
+    // Get the user's input from the form
     const cityToAvoid = cityInput.value;
     const breweryTypeFilter = filterType.value;
 
+    // Call the API to get breweries
     try {
       const data = await getBreweries(cityToAvoid, breweryTypeFilter);
       renderBreweries(data);
@@ -87,6 +91,8 @@ document.addEventListener('DOMContentLoaded', () => {
   themeToggleButtons.forEach((button) => {
     button.addEventListener('click', () => {
       const isScaredyCat = button.dataset.theme === 'scaredy';
+      
+      // Toggle the body class for dark mode
       document.body.classList.toggle('dark-mode', !isScaredyCat);
 
       // Change the text of the search button based on the current theme
@@ -104,6 +110,6 @@ document.addEventListener('DOMContentLoaded', () => {
           button.textContent = isScaredyCat ? 'Scaredy Cat' : 'Brave Beer Dawg';
         }
       });
-  });
+    });
   });
 });
