@@ -11,11 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Get breweries from API
   async function getBreweries(cityToAvoid, breweryTypeFilter) {
-    const url = `https://api.openbrewerydb.org/breweries?by_city=${cityToAvoid}`;
+    let url = `https://api.openbrewerydb.org/breweries?by_city=${cityToAvoid}`;
     if (breweryTypeFilter !== "false") {
       url += `&by_type=${breweryTypeFilter}`;
     }
-
+  
     try {
       const response = await fetch(url);
       const data = await response.json();
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log(error);
       throw error;
     }
-  }
+  }  
 
   // Escape HTML characters function
   function escapeHtml(text) {
