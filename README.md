@@ -25,4 +25,4 @@ You can also toggle between light mode and dark mode by clicking on the "Scaredy
 ## Acknowledgements
 
 - API used: https://www.openbrewerydb.org/
-- Sources of inspiration: Fear the Walking Dead (Show), Fear the Beard (James Harden), Fear the Deer (Giannis Antetokounmpo), Beard Papa (Cream Puff)
+- Sources of inspiration: Fear the Walking Dead (Show), Fear the Beard (James Harden), Fear the Deer (Giannis Antetokounmpo), Beard Papa (Cream Puff)# Phase-1-Project
