@@ -41,8 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Render a list of breweries
   function renderBreweries(breweries) {
     breweryList.innerHTML = ''; // Clears the brewery list
-
-    if (!Array.isArray(breweries)) {
+  
+    if (!breweries || breweries.length === 0) {
       // If there are no breweries, render a message
       const noBreweriesItem = document.createElement('li');
       noBreweriesItem.textContent = 'No breweries found. Try a different city or brewery type.';
@@ -55,6 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   }
+  
 
     // Render a single brewery item
     function renderBrewery(brewery) {
