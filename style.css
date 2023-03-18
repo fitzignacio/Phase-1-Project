@@ -6,39 +6,39 @@ body {
 }
 
 /* Dark mode styles */
-.dark-mode {
+body.dark-mode { /* Add 'body' before '.dark-mode' */
   color: #fff;
   background-color: #000;
 }
 
-.dark-mode h1 {
+body.dark-mode h1 {
   color: #fff;
 }
 
-.dark-mode label {
+body.dark-mode label {
   color: #fff;
 }
 
-.dark-mode input[type="text"] {
+body.dark-mode input[type="text"] {
   color: #fff;
   background-color: #000;
 }
 
-.dark-mode button {
+body.dark-mode button {
   background-color: #fff;
   color: #000;
 }
 
-.dark-mode button:hover {
+body.dark-mode button:hover {
   background-color: #000;
   color: #fff;
 }
 
-.dark-mode ul {
+body.dark-mode ul {
   color: #fff;
   background-color: #000;
 }
 
-.dark-mode li h2 {
+body.dark-mode li h2 {
   color: #fff;
 }
