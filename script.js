@@ -38,19 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
               .replace(/'/g, '&#039;');
   }
 
-  // Render a single brewery item
-  function renderBrewery(brewery) {
-    const breweryItem = document.createElement('li');
-    breweryItem.innerHTML = `
-      <h2>${escapeHtml(brewery.name)}</h2>
-      <p><strong>Brewery Type:</strong> ${escapeHtml(brewery.brewery_type)}</p>
-      <p><strong>Address:</strong> ${escapeHtml(`${brewery.street}, ${brewery.city}, ${brewery.state} ${brewery.postal_code}`)}</p>
-      <p><strong>Phone:</strong> ${escapeHtml(brewery.phone)}</p>
-      <p><strong>Website:</strong> <a href="${escapeHtml(brewery.website_url)}">${escapeHtml(brewery.website_url)}</a></p>
-    `;
-    return breweryItem;
-  }
-
   // Render a list of breweries
   function renderBreweries(breweries) {
     breweryList.innerHTML = ''; // Clears the brewery list
@@ -69,7 +56,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Handle form submit event
+    // Render a single brewery item
+    function renderBrewery(brewery) {
+      const breweryItem = document.createElement('li');
+      breweryItem.innerHTML = `
+        <h2>${escapeHtml(brewery.name)}</h2>
+        <p><strong>Brewery Type:</strong> ${escapeHtml(brewery.brewery_type)}</p>
+        <p><strong>Address:</strong> ${escapeHtml(`${brewery.street}, ${brewery.city}, ${brewery.state} ${brewery.postal_code}`)}</p>
+        <p><strong>Phone:</strong> ${escapeHtml(brewery.phone)}</p>
+        <p><strong>Website:</strong> <a href="${escapeHtml(brewery.website_url)}">${escapeHtml(brewery.website_url)}</a></p>
+      `;
+      return breweryItem;
+    }
+
+  // Handle search form submit event
   searchForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
